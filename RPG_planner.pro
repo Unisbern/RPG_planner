@@ -10,13 +10,16 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
-    mainwidget.cpp
+    mainwidget.cpp \
+    skillsform.cpp
 
 HEADERS += \
-    mainwidget.h
+    mainwidget.h \
+    skillsform.h
 
 FORMS += \
-    mainwidget.ui
+    mainwidget.ui \
+    skillsform.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
