@@ -7,13 +7,13 @@ namespace Ui {
 class tasksform;
 }
 
-class tasksform : public QWidget
+class TasksForm : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit tasksform(QWidget *parent = nullptr);
-    ~tasksform();
+    explicit TasksForm(QWidget *parent = nullptr);
+    ~TasksForm();
 
 private:
     Ui::tasksform *ui;

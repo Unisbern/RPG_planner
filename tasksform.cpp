@@ -1,14 +1,14 @@
 #include "tasksform.h"
 #include "ui_tasksform.h"
 
-tasksform::tasksform(QWidget *parent) :
+TasksForm::TasksForm(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::tasksform)
 {
     ui->setupUi(this);
 }
 
-tasksform::~tasksform()
+TasksForm::~TasksForm()
 {
     delete ui;
 }

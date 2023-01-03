@@ -7,13 +7,13 @@ namespace Ui {
 class taskItem;
 }
 
-class taskItem : public QWidget
+class TaskItem : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit taskItem(QWidget *parent = nullptr);
-    ~taskItem();
+    explicit TaskItem(QWidget *parent = nullptr);
+    ~TaskItem();
 
 private:
     Ui::taskItem *ui;
