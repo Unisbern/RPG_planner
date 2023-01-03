@@ -12,16 +12,19 @@ SOURCES += \
     main.cpp \
     mainwidget.cpp \
     skillsform.cpp \
+    taskitem.cpp \
     tasksform.cpp
 
 HEADERS += \
     mainwidget.h \
     skillsform.h \
+    taskitem.h \
     tasksform.h
 
 FORMS += \
     mainwidget.ui \
     skillsform.ui \
+    taskitem.ui \
     tasksform.ui
 
 # Default rules for deployment.
