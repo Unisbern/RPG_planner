@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>779</width>
+    <height>496</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -27,7 +27,40 @@
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
-    <layout class="QGridLayout" name="gridLayout" rowstretch="3,1,1,15" columnstretch="4,3,3,3,3">
+    <layout class="QGridLayout" name="gridLayout" rowstretch="3,0,0,0" columnstretch="4,0,0,0,0">
+     <item row="1" column="1" colspan="4">
+      <widget class="QProgressBar" name="progressBar">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="value">
+        <number>24</number>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1" colspan="4">
+      <widget class="QProgressBar" name="timeBar">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="value">
+        <number>24</number>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QLabel" name="level">
+       <property name="text">
+        <string>Уровень</string>
+       </property>
+      </widget>
+     </item>
      <item row="3" column="0">
       <layout class="QVBoxLayout" name="verticalLayout" stretch="1,9,9,9,9,9,0">
        <item>
@@ -123,6 +156,20 @@
        </item>
       </layout>
      </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="title">
+       <property name="text">
+        <string>Титул</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="4">
+      <widget class="QLabel" name="numLevel">
+       <property name="text">
+        <string>Число уровень</string>
+       </property>
+      </widget>
+     </item>
      <item row="0" column="2">
       <widget class="QLabel" name="numTitle">
        <property name="text">
@@ -161,53 +208,6 @@
        </property>
        <property name="scaledContents">
         <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="title">
-       <property name="text">
-        <string>Титул</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="3">
-      <widget class="QLabel" name="level">
-       <property name="text">
-        <string>Уровень</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="4">
-      <widget class="QLabel" name="numLevel">
-       <property name="text">
-        <string>Число уровень</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1" colspan="4">
-      <widget class="QProgressBar" name="progressBar">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="value">
-        <number>24</number>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1" colspan="4">
-      <widget class="QProgressBar" name="timeBar">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="value">
-        <number>24</number>
        </property>
       </widget>
      </item>

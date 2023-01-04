@@ -12,3 +12,10 @@ TaskItem::~TaskItem()
 {
     delete ui;
 }
+
+void TaskItem::update()
+{
+    ui->name->setText(name);
+    ui->experience->setText(QString("Опыт: %1").arg(expirience));
+
+}

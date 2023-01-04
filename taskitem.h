@@ -22,11 +22,13 @@ public:
     int expirience;
     bool state;
 
-    QDateTime date;
+    QDateTime datetime;
     int difficulty;
     int urgency;
     int fear;
     skill_t skill;
+
+    void update();
 
 
 

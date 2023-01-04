@@ -6,6 +6,10 @@ TasksForm::TasksForm(QWidget *parent) :
     ui(new Ui::tasksform)
 {
     ui->setupUi(this);
+    editorWidget = new ItemEditor();
+    editorWidget->hide();
+
+    connect(editorWidget, &ItemEditor::taskitem_sig, this, &TasksForm::on_taskitem_get);
 }
 
 TasksForm::~TasksForm()
@@ -21,21 +25,23 @@ TasksForm::~TasksForm()
     //    for(auto &item : list){
     //        delete item;
     //    }
-
+    delete editorWidget;
     delete ui;
+
+}
+
+void TasksForm::on_taskitem_get(TaskItem *item)
+{
+    qDebug()<<__FUNCTION__;
+    list.append(item);
+    ui->scrollLayout->addWidget(item);
 
 }
 
 void TasksForm::on_buttonAdd_clicked()
 {
     qDebug()<<__FUNCTION__;
-    TaskItem *item_ui = nullptr;
-    item_ui= new TaskItem();
-    list.append(item_ui);
-
-
-    ui->scrollLayout->addWidget(item_ui);
-    //qDebug()<<list;
+    editorWidget->show();
 }
 
 
