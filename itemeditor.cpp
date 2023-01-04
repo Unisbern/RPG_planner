@@ -6,10 +6,14 @@ ItemEditor::ItemEditor(QWidget *parent) :
     ui(new Ui::ItemEditor)
 {
     ui->setupUi(this);
+    calendar = new QCalendarWidget();
+    connect(calendar, &QCalendarWidget::selectionChanged, this, &ItemEditor::on_calendar);
 }
 
 ItemEditor::~ItemEditor()
 {
+
+    delete calendar;
     delete ui;
 }
 
@@ -17,7 +21,7 @@ void ItemEditor::on_buttonConfirm_accepted()
 {
     TaskItem *item = new TaskItem();
     item->name = ui->textEdit->toPlainText();
-    item->datetime = chooseDate();
+    item->date = chooseDate();
     item->state = false;
 
     item->difficulty = ui->sliderDifficulty->value();
@@ -37,8 +41,28 @@ int ItemEditor::calculateExp(int fear, int urgency, int difficulty)
     return 10*difficulty + 20*fear - urgency*5;
 }
 
-QDateTime ItemEditor::chooseDate()
+QDate ItemEditor::chooseDate()
 {
-    return QDateTime();
+
+    return calendar->selectedDate();
+}
+
+
+void ItemEditor::on_buttonDate_clicked()
+{
+    calendar->show();
+}
+
+
+void ItemEditor::on_buttonConfirm_rejected()
+{
+    this->hide();
+}
+
+void ItemEditor::on_calendar()
+{
+    qDebug()<<__FUNCTION__;
+    ui->buttonDate->setText(calendar->selectedDate().toString());
+
 }
 

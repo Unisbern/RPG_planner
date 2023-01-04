@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include <taskitem.h>
+#include <QCalendarWidget>
+#include <QDebug>
 
 namespace Ui {
 class ItemEditor;
@@ -21,10 +23,16 @@ public:
 private slots:
     void on_buttonConfirm_accepted();
 
+    void on_buttonDate_clicked();
+
+    void on_buttonConfirm_rejected();
+
+    void on_calendar();
 private:
     Ui::ItemEditor *ui;
+    QCalendarWidget *calendar;
     int calculateExp(int fear, int urgency, int difficulty);
-    QDateTime chooseDate();
+    QDate chooseDate();
 };
 
 #endif // ITEMEDITOR_H
