@@ -33,7 +33,7 @@ void TasksForm::on_buttonAdd_clicked()
     item_ui= new TaskItem();
     list.append(item_ui);
     ui->scrollLayout->addWidget(item_ui);
-    qDebug()<<list;
+    //qDebug()<<list;
 }
 
 
