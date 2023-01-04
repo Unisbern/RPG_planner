@@ -212,14 +212,7 @@
       </widget>
      </item>
      <item row="3" column="1" colspan="4">
-      <widget class="QWidget" name="space" native="true">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-      </widget>
+      <layout class="QVBoxLayout" name="spaceWidget"/>
      </item>
     </layout>
    </item>
