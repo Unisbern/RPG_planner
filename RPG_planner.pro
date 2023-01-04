@@ -9,6 +9,7 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    itemeditor.cpp \
     main.cpp \
     mainwidget.cpp \
     skillsform.cpp \
@@ -16,12 +17,14 @@ SOURCES += \
     tasksform.cpp
 
 HEADERS += \
+    itemeditor.h \
     mainwidget.h \
     skillsform.h \
     taskitem.h \
     tasksform.h
 
 FORMS += \
+    itemeditor.ui \
     mainwidget.ui \
     skillsform.ui \
     taskitem.ui \
