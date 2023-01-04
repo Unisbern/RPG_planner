@@ -22,7 +22,7 @@ public:
     int expirience;
     bool state;
 
-    QDateTime datetime;
+    QDate date;
     int difficulty;
     int urgency;
     int fear;

@@ -15,7 +15,9 @@ TaskItem::~TaskItem()
 
 void TaskItem::update()
 {
+    static int i=0;
     ui->name->setText(name);
     ui->experience->setText(QString("Опыт: %1").arg(expirience));
+    ui->groupBox->setTitle(QString("Миссия: %1").arg(++i));
 
 }
