@@ -5,6 +5,7 @@
 #include <QDateTime>
 #include <QString>
 #include <QDate>
+#include <QDebug>
 
 namespace Ui {
 class taskItem;
@@ -13,6 +14,9 @@ class taskItem;
 class TaskItem : public QWidget
 {
     Q_OBJECT
+
+signals:
+    void taskdelete_sig(TaskItem *item);
 
 public:
     explicit TaskItem(QWidget *parent = nullptr);
@@ -32,11 +36,18 @@ public:
 
     void update();
     void updatewith(QString lineItemInfo);
+    void deleteitem();
 
 
+
+    void setTitle(int i);
+
+private slots:
+    void on_buttonDelete_clicked();
 
 private:
     Ui::taskItem *ui;
+
 };
 
 #endif // TASKITEM_H

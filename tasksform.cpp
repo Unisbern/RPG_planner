@@ -10,7 +10,10 @@ TasksForm::TasksForm(QWidget *parent) :
     editorWidget->hide();
     this->loaddata();
 
+
     connect(editorWidget, &ItemEditor::taskitem_sig, this, &TasksForm::on_taskitem_get);
+
+
 }
 
 TasksForm::~TasksForm()
@@ -36,14 +39,42 @@ TasksForm::~TasksForm()
 void TasksForm::on_taskitem_get(TaskItem *item)
 {
     qDebug()<<__FUNCTION__;
+    connect(item, &TaskItem::taskdelete_sig, this, &TasksForm::on_taskdelete_get);
+
     list.append(item);
     ui->scrollLayout->addWidget(item);
+    item->setTitle(ui->scrollLayout->count());
+
+
+}
+
+void TasksForm::on_taskdelete_get(TaskItem *item)
+{
+    qDebug()<<__FUNCTION__;
+
+
+    if(list.contains(item)){
+        disconnect(item, &TaskItem::taskdelete_sig, this, &TasksForm::on_taskdelete_get);
+        item->hide();
+
+        list.removeAt(list.indexOf(item));
+        ui->scrollLayout->removeWidget(item);
+
+        for(int q=0;q<ui->scrollLayout->count();q++){
+            list[q]->setTitle(q+1);
+        }
+    }
+    else {
+        qCritical("Element doesn`t exist");
+    }
+
 
 }
 
 void TasksForm::on_buttonAdd_clicked()
 {
     qDebug()<<__FUNCTION__;
+    editorWidget->setDefault();
     editorWidget->show();
 }
 
@@ -58,8 +89,6 @@ void TasksForm::savedata(QList<TaskItem *> list)
     taskdata.open(QIODevice::ReadWrite);
 
 
-
-    //for(int q=0 ; q < list.length(); q++)
     for(auto &item : list){
         stream<< item->name <<','
               << item->expirience <<','

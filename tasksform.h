@@ -22,6 +22,7 @@ public:
 
 public slots:
     void on_taskitem_get(TaskItem *item);
+    void on_taskdelete_get(TaskItem *item);
 
 private slots:
     void on_buttonAdd_clicked();
@@ -34,8 +35,10 @@ private:
 
     void savedata(QList<TaskItem *> list);
     void loaddata();
+    void deleteitem();
 
     ItemEditor *editorWidget;
+
 
 };
 

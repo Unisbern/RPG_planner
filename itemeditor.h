@@ -19,6 +19,7 @@ signals:
 public:
     explicit ItemEditor(QWidget *parent = nullptr);
     ~ItemEditor();
+    void setDefault();
 
 private slots:
     void on_buttonConfirm_accepted();
@@ -33,6 +34,7 @@ private:
     QCalendarWidget *calendar;
     int calculateExp(int fear, int urgency, int difficulty);
     QDate chooseDate();
+
 };
 
 #endif // ITEMEDITOR_H

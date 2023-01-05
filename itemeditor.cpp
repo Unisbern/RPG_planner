@@ -18,6 +18,13 @@ ItemEditor::~ItemEditor()
     delete ui;
 }
 
+void ItemEditor::setDefault()
+{
+    ui->textEdit->clear();
+    ui->buttonDate->setText(QDate::currentDate().toString("dd.MM.yyyy"));
+
+}
+
 void ItemEditor::on_buttonConfirm_accepted()
 {
     TaskItem *item = new TaskItem();
