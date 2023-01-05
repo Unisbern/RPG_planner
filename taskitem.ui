@@ -59,7 +59,7 @@
        </widget>
       </item>
       <item row="0" column="4">
-       <widget class="QPushButton" name="buttonInfo">
+       <widget class="QPushButton" name="buttonDelete">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -67,7 +67,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>?</string>
+         <string>Удалить</string>
         </property>
        </widget>
       </item>

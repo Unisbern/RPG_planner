@@ -6,19 +6,24 @@ TaskItem::TaskItem(QWidget *parent) :
     ui(new Ui::taskItem)
 {
     ui->setupUi(this);
+
 }
 
 TaskItem::~TaskItem()
 {
-    delete ui;
+    delete ui; //delete taskitem
+}
+
+void TaskItem::setTitle(int i)
+{
+    ui->groupBox->setTitle(QString("Миссия: %1").arg(i));
 }
 
 void TaskItem::update()
 {
-    static int i=0;
+
     ui->name->setText(name);
     ui->experience->setText(QString("Опыт: %1").arg(expirience));
-    ui->groupBox->setTitle(QString("Миссия: %1").arg(++i));
 
 }
 
@@ -40,3 +45,11 @@ void TaskItem::updatewith(QString lineItemInfo)
 
 
 }
+
+void TaskItem::on_buttonDelete_clicked()
+{
+    qDebug()<<__FUNCTION__;
+    emit taskdelete_sig(this);
+
+}
+
