@@ -1,6 +1,7 @@
 #include "mainwidget.h"
 #include "ui_mainwidget.h"
 
+
 MainWidget::MainWidget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::MainWidget)
@@ -14,6 +15,7 @@ MainWidget::MainWidget(QWidget *parent)
 
     tasks_ui->hide();
     skills_ui->hide();
+
 }
 
 MainWidget::~MainWidget()
@@ -38,6 +40,7 @@ void MainWidget::on_buttonStatistics_clicked()
     setWidget(SKILLS_WGT);
 
 }
+
 
 void MainWidget::setWidget(widget_t id)
 {

@@ -8,6 +8,7 @@ ItemEditor::ItemEditor(QWidget *parent) :
     ui->setupUi(this);
     calendar = new QCalendarWidget();
     connect(calendar, &QCalendarWidget::selectionChanged, this, &ItemEditor::on_calendar);
+    ui->buttonDate->setText(QDate::currentDate().toString("dd.MM.yyyy"));
 }
 
 ItemEditor::~ItemEditor()
@@ -43,13 +44,13 @@ int ItemEditor::calculateExp(int fear, int urgency, int difficulty)
 
 QDate ItemEditor::chooseDate()
 {
-
     return calendar->selectedDate();
 }
 
 
 void ItemEditor::on_buttonDate_clicked()
 {
+
     calendar->show();
 }
 
@@ -62,7 +63,8 @@ void ItemEditor::on_buttonConfirm_rejected()
 void ItemEditor::on_calendar()
 {
     qDebug()<<__FUNCTION__;
-    ui->buttonDate->setText(calendar->selectedDate().toString());
+    ui->buttonDate->setText(calendar->selectedDate().toString("dd.MM.yyyy"));
+    calendar->hide();
 
 }
 
