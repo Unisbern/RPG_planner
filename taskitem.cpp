@@ -21,3 +21,22 @@ void TaskItem::update()
     ui->groupBox->setTitle(QString("Миссия: %1").arg(++i));
 
 }
+
+void TaskItem::updatewith(QString lineItemInfo)
+{
+     QStringList ItemInfo;
+     ItemInfo = lineItemInfo.split(QLatin1Char(','));
+     name = ItemInfo[0];
+     expirience = ItemInfo[1].toInt();
+     state = ItemInfo[2].contains('1', Qt::CaseInsensitive);
+     date = QDate::fromString(ItemInfo[3], "ddd MMM d yyyy");
+     difficulty = ItemInfo[4].toInt();
+     urgency = ItemInfo[5].toInt();
+     fear = ItemInfo[6].toInt();
+     skill = ItemInfo[7].toInt();
+
+     this->update();
+
+
+
+}

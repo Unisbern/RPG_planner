@@ -2,6 +2,7 @@
 #define TASKSFORM_H
 
 #include <QWidget>
+#include <QFile>
 #include <QDebug>
 #include <taskitem.h>
 #include <itemeditor.h>
@@ -28,6 +29,11 @@ private slots:
 private:
     Ui::tasksform *ui;
     QList<TaskItem *> list;
+
+
+
+    void savedata(QList<TaskItem *> list);
+    void loaddata();
 
     ItemEditor *editorWidget;
 

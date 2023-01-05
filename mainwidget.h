@@ -29,5 +29,7 @@ private:
     TasksForm *tasks_ui;
     typedef enum {EMPTY_WGT, TASKS_WGT, SKILLS_WGT} widget_t;
     void setWidget(widget_t id);
+
+
 };
 #endif // MAINWIDGET_H

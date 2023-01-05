@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include <QDateTime>
+#include <QString>
+#include <QDate>
 
 namespace Ui {
 class taskItem;
@@ -29,6 +31,7 @@ public:
     skill_t skill;
 
     void update();
+    void updatewith(QString lineItemInfo);
 
 
 
