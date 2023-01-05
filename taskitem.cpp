@@ -29,7 +29,7 @@ void TaskItem::updatewith(QString lineItemInfo)
      name = ItemInfo[0];
      expirience = ItemInfo[1].toInt();
      state = ItemInfo[2].contains('1', Qt::CaseInsensitive);
-     date = QDate::fromString(ItemInfo[3], "ddd MMM d yyyy");
+     date = QDate::fromString(ItemInfo[3], "dd.MM.yyyy");
      difficulty = ItemInfo[4].toInt();
      urgency = ItemInfo[5].toInt();
      fear = ItemInfo[6].toInt();

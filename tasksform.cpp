@@ -8,7 +8,7 @@ TasksForm::TasksForm(QWidget *parent) :
     ui->setupUi(this);
     editorWidget = new ItemEditor();
     editorWidget->hide();
-    //this->loaddata();
+    this->loaddata();
 
     connect(editorWidget, &ItemEditor::taskitem_sig, this, &TasksForm::on_taskitem_get);
 }
@@ -61,10 +61,10 @@ void TasksForm::savedata(QList<TaskItem *> list)
 
     //for(int q=0 ; q < list.length(); q++)
     for(auto &item : list){
-        stream<< item->name <<','
+        stream<< item->name.toLocal8Bit() <<','
               << item->expirience <<','
               << item->state <<','
-              << item->date.toString() <<','
+              << item->date.toString("dd.MM.yyyy") <<','
               << item->difficulty <<','
               << item->urgency <<','
               << item->fear <<','
