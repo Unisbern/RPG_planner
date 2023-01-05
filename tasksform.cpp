@@ -61,7 +61,7 @@ void TasksForm::savedata(QList<TaskItem *> list)
 
     //for(int q=0 ; q < list.length(); q++)
     for(auto &item : list){
-        stream<< item->name.toLocal8Bit() <<','
+        stream<< item->name <<','
               << item->expirience <<','
               << item->state <<','
               << item->date.toString("dd.MM.yyyy") <<','
@@ -72,7 +72,7 @@ void TasksForm::savedata(QList<TaskItem *> list)
 
     }
     taskdata.close();
-    qDebug() << "Сохранил данные";
+
 }
 
 void TasksForm::loaddata()
@@ -92,5 +92,5 @@ void TasksForm::loaddata()
             this->on_taskitem_get(item);
         }
 
-    qDebug() << "Загрузил данные";
+
 }
