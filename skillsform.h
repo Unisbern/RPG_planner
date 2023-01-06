@@ -8,6 +8,7 @@
 #include <QDialogButtonBox>
 #include <QFormLayout>
 #include <QFile>
+#include <QList>
 
 namespace Ui {
 class SkillsForm;
@@ -40,10 +41,7 @@ private:
 
     QList<skill_type> list;
 
-
-
-
-    void savedata(QList<skill_type> list);
+    void savedata();
     void loaddata();
 //    void deleteitem();
 };

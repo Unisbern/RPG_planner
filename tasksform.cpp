@@ -27,9 +27,9 @@ TasksForm::~TasksForm()
         i++;
     }
 
-    //    for(auto &item : list){
-    //        delete item;
-    //    }
+//        for(auto &item : list){
+//            delete item;
+//        }
 
     delete editorWidget;
     delete ui;
