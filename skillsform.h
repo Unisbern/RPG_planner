@@ -1,12 +1,13 @@
 #ifndef SKILLSFORM_H
 #define SKILLSFORM_H
 
-#include <QtableWidget>
+#include <QListWidget>
 #include <QDialog>
 #include <QDebug>
 #include <QLineEdit>
 #include <QDialogButtonBox>
 #include <QFormLayout>
+#include <QFile>
 
 namespace Ui {
 class SkillsForm;
@@ -20,6 +21,12 @@ public:
     explicit SkillsForm(QWidget *parent = nullptr);
     ~SkillsForm();
 
+    struct skill_type
+    {
+        QString skillname;
+        int experience;
+    };
+
 private slots:
     void on_pushButton_clicked();
 
@@ -29,22 +36,15 @@ private:
     Ui::SkillsForm *ui;
     QString createDialog();
 
-    struct skill_t
-    {
-        skill_t() {
-            QString skillname;
-            int experience;
-        }
-    };
 
-    QList<skill_t> list;
-    QTableWidget *tableSkill;
+
+    QList<skill_type> list;
 
 
 
 
-//    void savedata(QList<TaskItem *> list);
-//    void loaddata();
+    void savedata(QList<skill_type> list);
+    void loaddata();
 //    void deleteitem();
 };
 

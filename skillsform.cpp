@@ -7,15 +7,12 @@ SkillsForm::SkillsForm(QWidget *parent) :
 {
 
     ui->setupUi(this);
-    tableSkill = new QTableWidget(this);
     //tableWidget->setRowCount(10);
-    tableSkill->setColumnCount(2);
     //ui->tableSkill->setCurrentIndex()
 }
 
 SkillsForm::~SkillsForm()
 {
-    delete tableSkill;
     delete ui;
 }
 
@@ -24,11 +21,9 @@ void SkillsForm::on_pushButton_clicked()
     auto a = createDialog();
 
     if(!a.isEmpty()){
-
+        ui->listWidget->addItem(a);
     }
 
-        //ui->tableSkill->resizeRowToContents();
-        //ui->listWidget->addItem(a);
 
 }
 
@@ -69,8 +64,45 @@ QString SkillsForm::createDialog()
 
 }
 
-void SkillsForm::on_deleteButton_clicked()
+void SkillsForm::savedata(QList<skill_type> list)
 {
-    //delete function
+    qDebug()<<__FUNCTION__;
+    QFile skillsdata;
+    QTextStream stream;
+
+    stream.setDevice(&skillsdata);
+    skillsdata.setFileName("skillsdata.csv");
+    skillsdata.open(QIODevice::ReadWrite);
+
+
+    for(auto &item : list){
+        stream<< item.skillname <<','
+              << item.experience << endl;
+
+    }
+    skillsdata.close();
+
 }
 
+void SkillsForm::loaddata()
+{
+    qDebug()<<__FUNCTION__;
+    QFile skillsdata("skillsdata.csv");
+    skillsdata.open(QIODevice::ReadWrite);
+
+    while (!skillsdata.atEnd()) {
+            QString dataline = skillsdata.readLine();
+           // TaskItem *item = new TaskItem;
+            //item->updatewith(line);
+
+            qDebug()<<__FUNCTION__<< list;// << line;
+
+            //this->on_taskitem_get(item);
+        }
+
+}
+
+void SkillsForm::on_deleteButton_clicked()
+{
+    ui->listWidget->takeItem(ui->listWidget->currentRow());
+}

@@ -25,7 +25,7 @@ public:
     typedef int skill_t;
 
     QString name;
-    int expirience;
+    int experience;
     bool state;
 
     QDate date;
