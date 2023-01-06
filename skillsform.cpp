@@ -5,11 +5,17 @@ SkillsForm::SkillsForm(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::SkillsForm)
 {
+
     ui->setupUi(this);
+    tableSkill = new QTableWidget(this);
+    //tableWidget->setRowCount(10);
+    tableSkill->setColumnCount(2);
+    //ui->tableSkill->setCurrentIndex()
 }
 
 SkillsForm::~SkillsForm()
 {
+    delete tableSkill;
     delete ui;
 }
 
@@ -17,8 +23,12 @@ void SkillsForm::on_pushButton_clicked()
 {
     auto a = createDialog();
 
-    if(!a.isEmpty())
-        ui->listWidget->addItem(a);
+    if(!a.isEmpty()){
+
+    }
+
+        //ui->tableSkill->resizeRowToContents();
+        //ui->listWidget->addItem(a);
 
 }
 
@@ -58,3 +68,9 @@ QString SkillsForm::createDialog()
     }
 
 }
+
+void SkillsForm::on_deleteButton_clicked()
+{
+    //delete function
+}
+
