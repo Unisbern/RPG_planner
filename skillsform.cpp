@@ -5,20 +5,31 @@ SkillsForm::SkillsForm(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::SkillsForm)
 {
+
     ui->setupUi(this);
+    loaddata();
 }
 
 SkillsForm::~SkillsForm()
 {
+//    for(auto &item : list){
+//        delete item;
+//    }
+    savedata();
     delete ui;
 }
 
 void SkillsForm::on_pushButton_clicked()
 {
     auto a = createDialog();
-
-    if(!a.isEmpty())
+    skill_type skill;
+    skill.skillname=a;
+    skill.experience=0;
+    if(!a.isEmpty()){
         ui->listWidget->addItem(a);
+        list.append(skill);
+    }
+
 
 }
 
@@ -57,4 +68,55 @@ QString SkillsForm::createDialog()
         return {};
     }
 
+}
+
+void SkillsForm::savedata()
+{
+    qDebug()<<__FUNCTION__;
+    QFile skillsdata;
+    QTextStream stream;
+
+    stream.setDevice(&skillsdata);
+    skillsdata.setFileName("skillsdata.csv");
+    skillsdata.open(QIODevice::ReadWrite);
+
+
+    for(auto &item : list){
+        stream<< item.skillname <<','
+              << item.experience  << endl;
+
+    }
+    skillsdata.close();
+
+}
+
+void SkillsForm::loaddata()
+{
+    qDebug()<<__FUNCTION__;
+    QFile skillsdata("skillsdata.csv");
+    skillsdata.open(QIODevice::ReadWrite);
+
+    while (!skillsdata.atEnd()) {
+            QString dataline = skillsdata.readLine();
+            QStringList SkillInfo;
+            SkillInfo = dataline.split(QLatin1Char(','));
+
+            skill_type skill;
+            skill.skillname=SkillInfo[0];
+            skill.experience=SkillInfo[1].toInt();
+
+            ui->listWidget->addItem(skill.skillname);
+            list.append(skill);
+
+            //qDebug()<<__FUNCTION__<< list; // << line;
+
+            //this->on_taskitem_get(item);
+        }
+
+}
+
+void SkillsForm::on_deleteButton_clicked()
+{
+    list.removeAt(ui->listWidget->currentRow());
+    ui->listWidget->takeItem(ui->listWidget->currentRow());
 }

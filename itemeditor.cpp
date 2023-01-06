@@ -36,7 +36,7 @@ void ItemEditor::on_buttonConfirm_accepted()
     item->fear = ui->sliderFear->value();
     item->urgency = ui->sliderUrgency->value();
     item->skill = TaskItem::skill_t(); //здесь присваивается рандомный скилл
-    item->expirience = calculateExp(item->difficulty,item->fear,item->urgency);
+    item->experience = calculateExp(item->difficulty,item->fear,item->urgency);
 
     item->update();
     emit taskitem_sig(item);

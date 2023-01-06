@@ -23,7 +23,7 @@ void TaskItem::update()
 {
 
     ui->name->setText(name);
-    ui->experience->setText(QString("Опыт: %1").arg(expirience));
+    ui->experience->setText(QString("Опыт: %1").arg(experience));
 
 }
 
@@ -32,7 +32,7 @@ void TaskItem::updatewith(QString lineItemInfo)
      QStringList ItemInfo;
      ItemInfo = lineItemInfo.split(QLatin1Char(','));
      name = ItemInfo[0];
-     expirience = ItemInfo[1].toInt();
+     experience = ItemInfo[1].toInt();
      state = ItemInfo[2].contains('1', Qt::CaseInsensitive);
      date = QDate::fromString(ItemInfo[3], "dd.MM.yyyy");
      difficulty = ItemInfo[4].toInt();
