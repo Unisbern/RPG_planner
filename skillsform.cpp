@@ -15,7 +15,10 @@ SkillsForm::~SkillsForm()
 
 void SkillsForm::on_pushButton_clicked()
 {
-    ui->listWidget->addItem(createDialog());
+    auto a = createDialog();
+
+    if(!a.isEmpty())
+        ui->listWidget->addItem(a);
 
 }
 
@@ -40,11 +43,18 @@ QString SkillsForm::createDialog()
     dlg.setLayout(layout);
 
     if(dlg.exec() == QDialog::Accepted) {
-        const QString &str1 = ledit1->text();
+
+        qDebug()<<"ended positive dialog";
+
         return ledit1->text();
     }
-    else if (dlg.exec() == QDialog::Rejected){
+    else {
+
+        qDebug()<<" Reject button";
+        dlg.close();
+        qDebug()<<"ended negative dialog";
+
         return {};
     }
-}
 
+}
