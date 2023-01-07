@@ -7,6 +7,7 @@
 #include <taskitem.h>
 #include <itemeditor.h>
 
+
 namespace Ui {
 class tasksform;
 }
@@ -19,6 +20,7 @@ class TasksForm : public QWidget
 public:
     explicit TasksForm(QWidget *parent = nullptr);
     ~TasksForm();
+
 
 public slots:
     void on_taskitem_get(TaskItem *item);

@@ -7,8 +7,13 @@ ItemEditor::ItemEditor(QWidget *parent) :
 {
     ui->setupUi(this);
     calendar = new QCalendarWidget();
-    connect(calendar, &QCalendarWidget::selectionChanged, this, &ItemEditor::on_calendar);
     ui->buttonDate->setText(QDate::currentDate().toString("dd.MM.yyyy"));
+
+
+    connect(calendar, &QCalendarWidget::selectionChanged, this, &ItemEditor::on_calendar);
+    //connect(&SkillsForm, &SkillsForm::skillListChanched_sig, this, &ItemEditor::on_comboBox_activated); Отправитель коннекта не работает
+
+    //void addSkillstoForm();
 }
 
 ItemEditor::~ItemEditor()
@@ -35,7 +40,7 @@ void ItemEditor::on_buttonConfirm_accepted()
     item->difficulty = ui->sliderDifficulty->value();
     item->fear = ui->sliderFear->value();
     item->urgency = ui->sliderUrgency->value();
-    item->skill = TaskItem::skill_t(); //здесь присваивается рандомный скилл
+    item->skill = ui->comboBox->currentText();
     item->experience = calculateExp(item->difficulty,item->fear,item->urgency);
 
     item->update();
@@ -52,6 +57,11 @@ int ItemEditor::calculateExp(int fear, int urgency, int difficulty)
 QDate ItemEditor::chooseDate()
 {
     return calendar->selectedDate();
+}
+
+void ItemEditor::addSkillstoForm()
+{
+
 }
 
 
@@ -73,5 +83,14 @@ void ItemEditor::on_calendar()
     ui->buttonDate->setText(calendar->selectedDate().toString("dd.MM.yyyy"));
     calendar->hide();
 
+}
+
+
+void ItemEditor::on_comboBox_activated()
+{
+//    QList<list.lenght(list) namelist = QList<skill_type> list
+//    insertItems(int, list) // из листа
+    ui->comboBox->showPopup();
+    //ui->comboBox->hidePopup();
 }
 

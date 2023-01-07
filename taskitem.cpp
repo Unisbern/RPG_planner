@@ -38,7 +38,7 @@ void TaskItem::updatewith(QString lineItemInfo)
      difficulty = ItemInfo[4].toInt();
      urgency = ItemInfo[5].toInt();
      fear = ItemInfo[6].toInt();
-     skill = ItemInfo[7].toInt();
+     skill = ItemInfo[7];
 
      this->update();
 
