@@ -6,6 +6,7 @@
 #include <tasksform.h>
 #include <QDebug>
 #include <QList>
+#include <QFile>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWidget; }
@@ -18,11 +19,15 @@ class MainWidget : public QWidget
 public:
     MainWidget(QWidget *parent = nullptr);
     ~MainWidget();
+    void setlevelinfo();
+    int definelevel(int general_experience);
 
 private slots:
     void on_buttonTasks_clicked();
     void on_buttonStatistics_clicked();
 
+
+    void on_progressBar_valueChanged(int value);
 
 private:
     Ui::MainWidget *ui;
@@ -32,6 +37,7 @@ private:
     void setWidget(widget_t id);
 
     bool shouldSaveSkills;
+    int general_experience;
 
 
 };

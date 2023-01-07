@@ -17,6 +17,11 @@ MainWidget::MainWidget(QWidget *parent)
     skills_ui->hide();
 
     shouldSaveSkills=false;
+    general_experience=1400;
+
+    ui->progressBar->setRange(0,500);
+    setlevelinfo();
+
 
     //connect(skills_ui, &SkillsForm::skillListChanched_sig, tasks_ui->editorWidget, &ItemEditor::on_Editor_getSkills);
 }
@@ -28,7 +33,33 @@ MainWidget::~MainWidget()
     delete ui;
 }
 
+void MainWidget::setlevelinfo()
+{
+    int level=definelevel(general_experience);
+    ui->progressBar->setValue(general_experience % 500);
+    //ui->numLevel->settext(string(level));
+    qDebug()<< __FUNCTION__ << "level" << level;
 
+
+}
+
+int MainWidget::definelevel(int general_experience)
+{
+    qDebug()<<__FUNCTION__;
+    if(general_experience<500)
+        return 1;
+    else{
+        int level=2;
+        while(general_experience > 500*level){
+            level++;
+            qDebug()<<"iteration";
+        }
+
+        return level-1;
+
+    }
+
+}
 void MainWidget::on_buttonTasks_clicked()
 {
     qDebug() << __FUNCTION__ ; //вызов функции
@@ -70,6 +101,12 @@ void MainWidget::setWidget(widget_t id)
     default:
         break;
     }
+
+}
+
+
+void MainWidget::on_progressBar_valueChanged(int value)
+{
 
 }
 
