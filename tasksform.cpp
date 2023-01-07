@@ -13,7 +13,6 @@ TasksForm::TasksForm(QWidget *parent) :
 
     connect(editorWidget, &ItemEditor::taskitem_sig, this, &TasksForm::on_taskitem_get);
 
-
 }
 
 TasksForm::~TasksForm()

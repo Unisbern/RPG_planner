@@ -8,6 +8,7 @@ SkillsForm::SkillsForm(QWidget *parent) :
 
     ui->setupUi(this);
     loaddata();
+
 }
 
 SkillsForm::~SkillsForm()
@@ -15,6 +16,7 @@ SkillsForm::~SkillsForm()
 //    for(auto &item : list){
 //        delete item;
 //    }
+
     savedata();
     delete ui;
 }
@@ -30,8 +32,6 @@ void SkillsForm::on_pushButton_clicked()
 
         ui->listWidget->addItem(enteredSkill);
         list.append(skill);
-
-
 
     }
 
@@ -62,7 +62,7 @@ QString SkillsForm::createDialog()
 
         qDebug()<<"ended positive dialog";
         return enteredSkill->text();
-        emit skillListChanched_sig(list);
+
     }
     else {
 

@@ -6,11 +6,13 @@ ItemEditor::ItemEditor(QWidget *parent) :
     ui(new Ui::ItemEditor)
 {
     ui->setupUi(this);
+
     calendar = new QCalendarWidget();
     ui->buttonDate->setText(QDate::currentDate().toString("dd.MM.yyyy"));
-
-
     connect(calendar, &QCalendarWidget::selectionChanged, this, &ItemEditor::on_calendar);
+
+    fillupCombobox();
+    //on_Editor_getSkills(QList<SkillsForm::skill_type> list);
     //connect(&SkillsForm, &SkillsForm::skillListChanched_sig, this, &ItemEditor::on_comboBox_activated); Отправитель коннекта не работает
 
     //void addSkillstoForm();
@@ -59,8 +61,38 @@ QDate ItemEditor::chooseDate()
     return calendar->selectedDate();
 }
 
-void ItemEditor::addSkillstoForm()
+void ItemEditor::fillupCombobox()
 {
+//    qDebug()<<__FUNCTION__;
+//    QFile skillsdata("skillsdata.csv");
+//    //if(skillsdata) not empty
+//    skillsdata.open(QIODevice::ReadWrite);
+
+//    QList<QString> Skills_inCombobox;
+//    int indexSkillname = 0;
+//    qDebug()<<"Started using skillfile";
+
+//    while (!skillsdata.atEnd()) {
+//            QString dataline = skillsdata.readLine();
+//            QStringList SkillInfo;
+//            SkillInfo = dataline.split(QLatin1Char(','));
+
+//            Skills_inCombobox[indexSkillname]=SkillInfo[0];
+//            indexSkillname++;
+//        }
+//    qDebug()<<"Clear";
+//    ui->comboBox->clear();
+//    qDebug()<<"Add";
+//    ui->comboBox->addItems(Skills_inCombobox);
+
+
+}
+
+
+
+void ItemEditor::chooseSkill()
+{
+    ui->comboBox->hidePopup();
 
 }
 
@@ -85,12 +117,31 @@ void ItemEditor::on_calendar()
 
 }
 
+void ItemEditor::on_Editor_getSkills(QList<SkillsForm::skill_type> list)
+{
+    qDebug() << __FUNCTION__<<list.length();
+    ui->comboBox->clear();
+
+    //СТЕРЕТЬ КОМБОБОКС ПРЕДЫДУЩИЙ ИЗ ЭДИТОРА И ДОБАВИТЬ НОВЫЙ
+    QList<QString> skillname_list;
+    qDebug() << skillname_list.length();
+
+
+    for(int i=0; list.length();i++){
+        skillname_list[i]=list[i].skillname;
+    }
+    //ui->comboBox->insertItems(skillname_list)
+    ui->comboBox->addItems(skillname_list);
+
+}
+
 
 void ItemEditor::on_comboBox_activated()
 {
-//    QList<list.lenght(list) namelist = QList<skill_type> list
-//    insertItems(int, list) // из листа
+
     ui->comboBox->showPopup();
-    //ui->comboBox->hidePopup();
+
+    //chooseSkill();
+
 }
 

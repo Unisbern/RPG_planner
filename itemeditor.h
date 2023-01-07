@@ -8,6 +8,7 @@
 #include <skillsform.h>
 #include <QDialog>
 #include <QList>
+#include <QComboBox>
 
 namespace Ui {
 class ItemEditor;
@@ -23,13 +24,19 @@ public:
     explicit ItemEditor(QWidget *parent = nullptr);
     ~ItemEditor();
     void setDefault();
+    //explicit BaseComboModel(const QString &columns, QObject *parent = 0);
+
+public slots:
+
+    void on_Editor_getSkills(QList<SkillsForm::skill_type> list);
+
 
 private slots:
     void on_buttonConfirm_accepted();
     void on_buttonDate_clicked();
     void on_buttonConfirm_rejected();
-
     void on_calendar();
+
     void on_comboBox_activated();
 
 private:
@@ -37,7 +44,9 @@ private:
     QCalendarWidget *calendar;
     int calculateExp(int fear, int urgency, int difficulty);
     QDate chooseDate();
-    void addSkillstoForm();
+
+    void fillupCombobox();
+    void chooseSkill();
 
 };
 

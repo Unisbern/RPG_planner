@@ -5,6 +5,7 @@
 #include <skillsform.h>
 #include <tasksform.h>
 #include <QDebug>
+#include <QList>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWidget; }
@@ -29,6 +30,8 @@ private:
     TasksForm *tasks_ui;
     typedef enum {EMPTY_WGT, TASKS_WGT, SKILLS_WGT} widget_t;
     void setWidget(widget_t id);
+
+    bool shouldSaveSkills;
 
 
 };

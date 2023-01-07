@@ -20,6 +20,7 @@ class TasksForm : public QWidget
 public:
     explicit TasksForm(QWidget *parent = nullptr);
     ~TasksForm();
+    ItemEditor *editorWidget;
 
 
 public slots:
@@ -39,7 +40,7 @@ private:
     void loaddata();
     void deleteitem();
 
-    ItemEditor *editorWidget;
+
 
 
 };

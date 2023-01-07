@@ -16,6 +16,9 @@ MainWidget::MainWidget(QWidget *parent)
     tasks_ui->hide();
     skills_ui->hide();
 
+    shouldSaveSkills=false;
+
+    //connect(skills_ui, &SkillsForm::skillListChanched_sig, tasks_ui->editorWidget, &ItemEditor::on_Editor_getSkills);
 }
 
 MainWidget::~MainWidget()
@@ -37,6 +40,7 @@ void MainWidget::on_buttonTasks_clicked()
 void MainWidget::on_buttonStatistics_clicked()
 {
     qDebug() << __FUNCTION__ ;
+    shouldSaveSkills = true;
     setWidget(SKILLS_WGT);
 
 }
@@ -48,6 +52,11 @@ void MainWidget::setWidget(widget_t id)
     qDebug()<<__FUNCTION__<<id;
     tasks_ui->hide();
     skills_ui->hide();
+    if(shouldSaveSkills){
+        shouldSaveSkills=false;
+        //emit skillListChanched_sig(list);
+    }
+
     switch (id) {
     case EMPTY_WGT:
         break;
@@ -56,6 +65,7 @@ void MainWidget::setWidget(widget_t id)
         break;
     case SKILLS_WGT:
         skills_ui->show();
+
         break;
     default:
         break;
