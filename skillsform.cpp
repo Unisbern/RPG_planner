@@ -7,8 +7,6 @@ SkillsForm::SkillsForm(QWidget *parent) :
 {
 
     ui->setupUi(this);
-//    list[0].skillname = "No skills";
-//    list[0].experience = 0;
     loaddata();
 
 
