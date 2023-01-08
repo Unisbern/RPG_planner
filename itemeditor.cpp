@@ -6,36 +6,48 @@ ItemEditor::ItemEditor(QWidget *parent) :
     ui(new Ui::ItemEditor)
 {
     ui->setupUi(this);
+    //ui->textEdit->setWordWrapMode(QTextOption::NoWrap);
     calendar = new QCalendarWidget();
-    connect(calendar, &QCalendarWidget::selectionChanged, this, &ItemEditor::on_calendar);
     ui->buttonDate->setText(QDate::currentDate().toString("dd.MM.yyyy"));
+    connect(calendar, &QCalendarWidget::selectionChanged, this, &ItemEditor::on_calendar);
+
+
 }
 
 ItemEditor::~ItemEditor()
 {
-
+    qDebug()<<__FUNCTION__;
     delete calendar;
     delete ui;
 }
 
 void ItemEditor::setDefault()
 {
+    qDebug()<<__FUNCTION__;
     ui->textEdit->clear();
     ui->buttonDate->setText(QDate::currentDate().toString("dd.MM.yyyy"));
+
+}
+
+void ItemEditor::onEditor_loaddata_get()
+{
+    qDebug()<<__FUNCTION__;
+    ui->comboBox->clear();
+    fillupCombobox();
 
 }
 
 void ItemEditor::on_buttonConfirm_accepted()
 {
     TaskItem *item = new TaskItem();
-    item->name = ui->textEdit->toPlainText();
+    item->name = ui->textEdit->text();
     item->date = chooseDate();
     item->state = false;
 
     item->difficulty = ui->sliderDifficulty->value();
     item->fear = ui->sliderFear->value();
     item->urgency = ui->sliderUrgency->value();
-    item->skill = TaskItem::skill_t(); //здесь присваивается рандомный скилл
+    item->skill = ui->comboBox->currentText();
     item->experience = calculateExp(item->difficulty,item->fear,item->urgency);
 
     item->update();
@@ -54,10 +66,30 @@ QDate ItemEditor::chooseDate()
     return calendar->selectedDate();
 }
 
+void ItemEditor::fillupCombobox()
+{
+    qDebug()<<__FUNCTION__;
+    QFile skillsdata("skillsdata.csv");
+    skillsdata.open(QIODevice::ReadWrite);
+
+    qDebug()<<"Started using skillfile";
+    gotSkills.clear();
+    while (!skillsdata.atEnd()) {
+            QString dataline = skillsdata.readLine();
+            QStringList SkillInfo = dataline.split(QLatin1Char(','));
+            gotSkills.append(SkillInfo[0]);
+        }
+    qDebug()<<"Clear";
+    ui->comboBox->clear();
+    qDebug()<<"Add";
+    ui->comboBox->addItems(gotSkills);
+
+}
+
 
 void ItemEditor::on_buttonDate_clicked()
 {
-
+    qDebug()<<__FUNCTION__;
     calendar->show();
 }
 
@@ -73,5 +105,10 @@ void ItemEditor::on_calendar()
     ui->buttonDate->setText(calendar->selectedDate().toString("dd.MM.yyyy"));
     calendar->hide();
 
+}
+
+void ItemEditor::on_comboBox_activated()
+{
+    qDebug()<<__FUNCTION__;
 }
 

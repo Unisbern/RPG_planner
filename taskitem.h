@@ -6,6 +6,7 @@
 #include <QString>
 #include <QDate>
 #include <QDebug>
+//#include <skillsform.h>
 
 namespace Ui {
 class taskItem;
@@ -22,8 +23,6 @@ public:
     explicit TaskItem(QWidget *parent = nullptr);
     ~TaskItem();
 
-    typedef int skill_t;
-
     QString name;
     int experience;
     bool state;
@@ -32,7 +31,8 @@ public:
     int difficulty;
     int urgency;
     int fear;
-    skill_t skill;
+
+    QString skill;
 
     void update();
     void updatewith(QString lineItemInfo);

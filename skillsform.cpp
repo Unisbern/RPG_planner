@@ -8,6 +8,9 @@ SkillsForm::SkillsForm(QWidget *parent) :
 
     ui->setupUi(this);
     loaddata();
+
+
+
 }
 
 SkillsForm::~SkillsForm()
@@ -15,18 +18,21 @@ SkillsForm::~SkillsForm()
 //    for(auto &item : list){
 //        delete item;
 //    }
+
     savedata();
     delete ui;
 }
 
 void SkillsForm::on_pushButton_clicked()
 {
-    auto a = createDialog();
+    auto enteredSkill = createDialog();
     skill_type skill;
-    skill.skillname=a;
+    skill.skillname=enteredSkill;
     skill.experience=0;
-    if(!a.isEmpty()){
-        ui->listWidget->addItem(a);
+
+    if(!enteredSkill.isEmpty()){
+
+        ui->listWidget->addItem(enteredSkill);
         list.append(skill);
     }
 
@@ -40,7 +46,7 @@ QString SkillsForm::createDialog()
     dlg.setFixedSize(300,90);
     dlg.setWindowTitle(tr("Введите навык"));
 
-    QLineEdit *ledit1 = new QLineEdit(&dlg);
+    QLineEdit *enteredSkill= new QLineEdit(&dlg);
 
     QDialogButtonBox *btn_box = new QDialogButtonBox(&dlg);
     btn_box->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
@@ -49,15 +55,15 @@ QString SkillsForm::createDialog()
     connect(btn_box, &QDialogButtonBox::rejected, &dlg, &QDialog::reject);
 
     QFormLayout *layout = new QFormLayout();
-    layout->addRow(tr("Введите навык"), ledit1);
+    layout->addRow(tr("Введите навык"), enteredSkill);
     layout->addWidget(btn_box);
     dlg.setLayout(layout);
 
     if(dlg.exec() == QDialog::Accepted) {
 
         qDebug()<<"ended positive dialog";
+        return enteredSkill->text();
 
-        return ledit1->text();
     }
     else {
 
@@ -107,10 +113,6 @@ void SkillsForm::loaddata()
 
             ui->listWidget->addItem(skill.skillname);
             list.append(skill);
-
-            //qDebug()<<__FUNCTION__<< list; // << line;
-
-            //this->on_taskitem_get(item);
         }
 
 }
@@ -119,4 +121,10 @@ void SkillsForm::on_deleteButton_clicked()
 {
     list.removeAt(ui->listWidget->currentRow());
     ui->listWidget->takeItem(ui->listWidget->currentRow());
+}
+
+void SkillsForm::onSkillForm_savedata_get()
+{
+    qDebug()<<__FUNCTION__;
+    savedata();
 }

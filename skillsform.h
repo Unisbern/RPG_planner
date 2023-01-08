@@ -28,18 +28,20 @@ public:
         int experience;
     };
 
-private slots:
-    void on_pushButton_clicked();
+    QList<skill_type> list;
 
+//signals:
+    //void skillListChanched_sig(QList<skill_type> list);
+
+
+public slots:
+    void on_pushButton_clicked();
     void on_deleteButton_clicked();
+    void onSkillForm_savedata_get();
 
 private:
     Ui::SkillsForm *ui;
     QString createDialog();
-
-
-
-    QList<skill_type> list;
 
     void savedata();
     void loaddata();

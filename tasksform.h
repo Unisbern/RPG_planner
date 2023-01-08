@@ -6,6 +6,8 @@
 #include <QDebug>
 #include <taskitem.h>
 #include <itemeditor.h>
+#include <QCalendarWidget>
+
 
 namespace Ui {
 class tasksform;
@@ -19,6 +21,8 @@ class TasksForm : public QWidget
 public:
     explicit TasksForm(QWidget *parent = nullptr);
     ~TasksForm();
+    ItemEditor *editorWidget;
+
 
 public slots:
     void on_taskitem_get(TaskItem *item);
@@ -27,7 +31,10 @@ public slots:
 private slots:
     void on_buttonAdd_clicked();
 
+    void on_buttonDate_clicked();
+
 private:
+    QCalendarWidget *task_calendar;
     Ui::tasksform *ui;
     QList<TaskItem *> list;
 
@@ -37,7 +44,10 @@ private:
     void loaddata();
     void deleteitem();
 
-    ItemEditor *editorWidget;
+    void chooseDate_Filter();
+    void filterTasks(QDate f_date);
+
+
 
 
 };

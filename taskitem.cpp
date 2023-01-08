@@ -24,11 +24,13 @@ void TaskItem::update()
 
     ui->name->setText(name);
     ui->experience->setText(QString("Опыт: %1").arg(experience));
+    ui->labelSkill->setText(skill);
 
 }
 
 void TaskItem::updatewith(QString lineItemInfo)
 {
+     qDebug()<<__FUNCTION__;
      QStringList ItemInfo;
      ItemInfo = lineItemInfo.split(QLatin1Char(','));
      name = ItemInfo[0];
@@ -38,7 +40,8 @@ void TaskItem::updatewith(QString lineItemInfo)
      difficulty = ItemInfo[4].toInt();
      urgency = ItemInfo[5].toInt();
      fear = ItemInfo[6].toInt();
-     skill = ItemInfo[7].toInt();
+     qDebug()<<"Записываем скилл"<<ItemInfo[7];
+     skill = ItemInfo[7];
 
      this->update();
 
