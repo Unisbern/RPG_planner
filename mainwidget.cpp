@@ -16,13 +16,14 @@ MainWidget::MainWidget(QWidget *parent)
     tasks_ui->hide();
     skills_ui->hide();
 
-    shouldSaveSkills=false;
     general_experience=1400;
 
     ui->progressBar->setRange(0,500);
     setlevelinfo();
 
     connect(this, &MainWidget::onSkillForm_savedata, skills_ui, &SkillsForm::onSkillForm_savedata_get);
+
+    connect(this, &MainWidget::onEditor_loaddata, tasks_ui->editorWidget, &ItemEditor::onEditor_loaddata_get);
     //connect(skills_ui, &SkillsForm::skillListChanched_sig, tasks_ui->editorWidget, &ItemEditor::on_Editor_getSkills);
 }
 
@@ -71,7 +72,6 @@ void MainWidget::on_buttonTasks_clicked()
 void MainWidget::on_buttonStatistics_clicked()
 {
     qDebug() << __FUNCTION__ ;
-    shouldSaveSkills = true;
     setWidget(SKILLS_WGT);
 
 }
@@ -83,17 +83,16 @@ void MainWidget::setWidget(widget_t id)
     qDebug()<<__FUNCTION__<<id;
     tasks_ui->hide();
     skills_ui->hide();
-    if(shouldSaveSkills){
-        shouldSaveSkills=false;
-        qDebug()<<"Сработал emit";
-        emit onSkillForm_savedata();
-    }
+
+    emit onSkillForm_savedata();
 
     switch (id) {
     case EMPTY_WGT:
         break;
     case TASKS_WGT:
         tasks_ui->show();
+        qDebug()<<"Сработал emit" << "onEditor_loaddata";
+        emit onEditor_loaddata();
         break;
     case SKILLS_WGT:
         skills_ui->show();

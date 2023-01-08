@@ -25,6 +25,8 @@ public:
     ~ItemEditor();
     void setDefault();
 
+public slots:
+    void onEditor_loaddata_get();
 private slots:
     void on_buttonConfirm_accepted();
     void on_buttonConfirm_rejected();
@@ -33,6 +35,7 @@ private slots:
     void on_calendar();
 
     void on_comboBox_activated();
+
 
 private:
     Ui::ItemEditor *ui;

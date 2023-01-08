@@ -29,6 +29,7 @@ void TaskItem::update()
 
 void TaskItem::updatewith(QString lineItemInfo)
 {
+     qDebug()<<__FUNCTION__;
      QStringList ItemInfo;
      ItemInfo = lineItemInfo.split(QLatin1Char(','));
      name = ItemInfo[0];
@@ -38,6 +39,7 @@ void TaskItem::updatewith(QString lineItemInfo)
      difficulty = ItemInfo[4].toInt();
      urgency = ItemInfo[5].toInt();
      fear = ItemInfo[6].toInt();
+     qDebug()<<"Записываем скилл"<<ItemInfo[7];
      skill = ItemInfo[7];
 
      this->update();

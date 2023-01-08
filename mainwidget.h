@@ -1,9 +1,10 @@
 #ifndef MAINWIDGET_H
 #define MAINWIDGET_H
 
-#include <QWidget>
 #include <skillsform.h>
 #include <tasksform.h>
+#include <itemeditor.h>
+#include <QWidget>
 #include <QDebug>
 #include <QList>
 #include <QFile>
@@ -24,6 +25,7 @@ public:
 
 signals:
     void onSkillForm_savedata();
+    void onEditor_loaddata();
 
 
 private slots:
@@ -39,7 +41,6 @@ private:
     typedef enum {EMPTY_WGT, TASKS_WGT, SKILLS_WGT} widget_t;
     void setWidget(widget_t id);
 
-    bool shouldSaveSkills;
     int general_experience;
 
 

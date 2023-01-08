@@ -6,25 +6,34 @@ ItemEditor::ItemEditor(QWidget *parent) :
     ui(new Ui::ItemEditor)
 {
     ui->setupUi(this);
-
+    ui->textEdit->setWordWrapMode(QTextOption::NoWrap);
     calendar = new QCalendarWidget();
     ui->buttonDate->setText(QDate::currentDate().toString("dd.MM.yyyy"));
     connect(calendar, &QCalendarWidget::selectionChanged, this, &ItemEditor::on_calendar);
 
-    fillupCombobox();
+
 }
 
 ItemEditor::~ItemEditor()
 {
-
+    qDebug()<<__FUNCTION__;
     delete calendar;
     delete ui;
 }
 
 void ItemEditor::setDefault()
 {
+    qDebug()<<__FUNCTION__;
     ui->textEdit->clear();
     ui->buttonDate->setText(QDate::currentDate().toString("dd.MM.yyyy"));
+
+}
+
+void ItemEditor::onEditor_loaddata_get()
+{
+    qDebug()<<__FUNCTION__;
+    ui->comboBox->clear();
+    fillupCombobox();
 
 }
 
@@ -80,7 +89,7 @@ void ItemEditor::fillupCombobox()
 
 void ItemEditor::on_buttonDate_clicked()
 {
-
+    qDebug()<<__FUNCTION__;
     calendar->show();
 }
 
