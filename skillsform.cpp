@@ -11,6 +11,8 @@ SkillsForm::SkillsForm(QWidget *parent) :
 //    list[0].experience = 0;
     loaddata();
 
+
+
 }
 
 SkillsForm::~SkillsForm()
@@ -34,8 +36,6 @@ void SkillsForm::on_pushButton_clicked()
 
         ui->listWidget->addItem(enteredSkill);
         list.append(skill);
-        //emit skillListChanched_sig(list);
-
     }
 
 
@@ -115,10 +115,6 @@ void SkillsForm::loaddata()
 
             ui->listWidget->addItem(skill.skillname);
             list.append(skill);
-
-            //qDebug()<<__FUNCTION__<< list; // << line;
-
-            //this->on_taskitem_get(item);
         }
 
 }
@@ -127,4 +123,10 @@ void SkillsForm::on_deleteButton_clicked()
 {
     list.removeAt(ui->listWidget->currentRow());
     ui->listWidget->takeItem(ui->listWidget->currentRow());
+}
+
+void SkillsForm::onSkillForm_savedata_get()
+{
+    qDebug()<<__FUNCTION__;
+    savedata();
 }

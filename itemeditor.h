@@ -24,17 +24,12 @@ public:
     explicit ItemEditor(QWidget *parent = nullptr);
     ~ItemEditor();
     void setDefault();
-    //explicit BaseComboModel(const QString &columns, QObject *parent = 0);
-
-public slots:
-
-    void on_Editor_getSkills(QList<SkillsForm::skill_type> list);
-
 
 private slots:
     void on_buttonConfirm_accepted();
-    void on_buttonDate_clicked();
     void on_buttonConfirm_rejected();
+
+    void on_buttonDate_clicked();
     void on_calendar();
 
     void on_comboBox_activated();
@@ -46,8 +41,6 @@ private:
     QDate chooseDate();
 
     void fillupCombobox();
-    void chooseSkill();
-
     QList<QString> gotSkills;
 
 };

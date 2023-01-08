@@ -30,14 +30,14 @@ public:
 
     QList<skill_type> list;
 
-signals:
-    void skillListChanched_sig(QList<skill_type> list);
+//signals:
+    //void skillListChanched_sig(QList<skill_type> list);
 
 
-private slots:
+public slots:
     void on_pushButton_clicked();
-
     void on_deleteButton_clicked();
+    void onSkillForm_savedata_get();
 
 private:
     Ui::SkillsForm *ui;

@@ -22,10 +22,13 @@ public:
     void setlevelinfo();
     int definelevel(int general_experience);
 
+signals:
+    void onSkillForm_savedata();
+
+
 private slots:
     void on_buttonTasks_clicked();
     void on_buttonStatistics_clicked();
-
 
     void on_progressBar_valueChanged(int value);
 
