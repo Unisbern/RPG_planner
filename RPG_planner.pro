@@ -10,28 +10,34 @@ CONFIG += c++11
 
 SOURCES += \
     achievementform.cpp \
+    helpwidget.cpp \
     itemeditor.cpp \
     main.cpp \
     mainwidget.cpp \
     skillsform.cpp \
     taskitem.cpp \
-    tasksform.cpp
+    tasksform.cpp \
+    userwidget.cpp
 
 HEADERS += \
     achievementform.h \
+    helpwidget.h \
     itemeditor.h \
     mainwidget.h \
     skillsform.h \
     taskitem.h \
-    tasksform.h
+    tasksform.h \
+    userwidget.h
 
 FORMS += \
     achievementform.ui \
+    helpwidget.ui \
     itemeditor.ui \
     mainwidget.ui \
     skillsform.ui \
     taskitem.ui \
-    tasksform.ui
+    tasksform.ui \
+    userwidget.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

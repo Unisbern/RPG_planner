@@ -4,6 +4,9 @@
 #include <skillsform.h>
 #include <tasksform.h>
 #include <itemeditor.h>
+#include <achievementform.h>
+#include <helpwidget.h>
+#include <userwidget.h>
 #include <QWidget>
 #include <QDebug>
 #include <QList>
@@ -22,6 +25,7 @@ public:
     ~MainWidget();
     void setlevelinfo();
     int definelevel(int general_experience);
+    int general_experience;
 
 signals:
     void onSkillForm_savedata();
@@ -34,14 +38,24 @@ private slots:
 
     void on_progressBar_valueChanged(int value);
 
+    void on_buttonAchievments_clicked();
+
+    void on_buttonProflie_clicked();
+
+    void on_buttonHelp_clicked();
+
 private:
     Ui::MainWidget *ui;
     SkillsForm *skills_ui; //экземпляр смотри main
     TasksForm *tasks_ui;
-    typedef enum {EMPTY_WGT, TASKS_WGT, SKILLS_WGT} widget_t;
+    UserWidget *user_ui;
+    AchievementForm *achievement_ui;
+    HelpWidget *help_ui;
+
+    typedef enum {EMPTY_WGT, TASKS_WGT, SKILLS_WGT, ACHIEVEMENT_WGT, USER_WGT, HELP_WGT} widget_t;
     void setWidget(widget_t id);
 
-    int general_experience;
+
 
 
 };
