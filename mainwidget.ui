@@ -28,6 +28,10 @@
   <property name="windowTitle">
    <string>RPG planner</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>icon_dragon.ico</normaloff>icon_dragon.ico</iconset>
+  </property>
   <property name="windowOpacity">
    <double>1.000000000000000</double>
   </property>
