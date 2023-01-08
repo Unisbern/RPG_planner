@@ -11,9 +11,15 @@ ItemEditor::ItemEditor(QWidget *parent) :
     ui->buttonDate->setText(QDate::currentDate().toString("dd.MM.yyyy"));
     connect(calendar, &QCalendarWidget::selectionChanged, this, &ItemEditor::on_calendar);
 
+
+
+    //QList<QString> gotSkills = {"Karfagen","should","be destroed"};
     fillupCombobox();
+    //метод заполнения листа из блокнота
+
+
     //on_Editor_getSkills(QList<SkillsForm::skill_type> list);
-    //connect(&SkillsForm, &SkillsForm::skillListChanched_sig, this, &ItemEditor::on_comboBox_activated); Отправитель коннекта не работает
+    //connect(&SkillsForm, &SkillsForm::skillListChanched_sig, this, &ItemEditor::on_comboBox_activated);// Отправитель коннекта не работает
 
     //void addSkillstoForm();
 }
@@ -68,8 +74,6 @@ void ItemEditor::fillupCombobox()
 //    //if(skillsdata) not empty
 //    skillsdata.open(QIODevice::ReadWrite);
 
-//    QList<QString> Skills_inCombobox;
-//    int indexSkillname = 0;
 //    qDebug()<<"Started using skillfile";
 
 //    while (!skillsdata.atEnd()) {
@@ -120,26 +124,27 @@ void ItemEditor::on_calendar()
 void ItemEditor::on_Editor_getSkills(QList<SkillsForm::skill_type> list)
 {
     qDebug() << __FUNCTION__<<list.length();
+    gotSkills.clear();
     ui->comboBox->clear();
 
-    //СТЕРЕТЬ КОМБОБОКС ПРЕДЫДУЩИЙ ИЗ ЭДИТОРА И ДОБАВИТЬ НОВЫЙ
-    QList<QString> skillname_list;
-    qDebug() << skillname_list.length();
-
-
     for(int i=0; list.length();i++){
-        skillname_list[i]=list[i].skillname;
+        gotSkills[i]=list[i].skillname;
     }
+    ui->comboBox->addItems(gotSkills);
+
     //ui->comboBox->insertItems(skillname_list)
-    ui->comboBox->addItems(skillname_list);
+    //ui->comboBox->addItems(skillname_list);
 
 }
 
 
 void ItemEditor::on_comboBox_activated()
 {
+    qDebug()<<__FUNCTION__;
 
-    ui->comboBox->showPopup();
+
+    //ui->comboBox->showPopup();
+    //QMessageBoxPrivate.information
 
     //chooseSkill();
 

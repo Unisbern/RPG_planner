@@ -23,7 +23,7 @@ MainWidget::MainWidget(QWidget *parent)
     setlevelinfo();
 
 
-    //connect(skills_ui, &SkillsForm::skillListChanched_sig, tasks_ui->editorWidget, &ItemEditor::on_Editor_getSkills);
+    connect(skills_ui, &SkillsForm::skillListChanched_sig, tasks_ui->editorWidget, &ItemEditor::on_Editor_getSkills);
 }
 
 MainWidget::~MainWidget()
@@ -85,7 +85,6 @@ void MainWidget::setWidget(widget_t id)
     skills_ui->hide();
     if(shouldSaveSkills){
         shouldSaveSkills=false;
-        //emit skillListChanched_sig(list);
     }
 
     switch (id) {

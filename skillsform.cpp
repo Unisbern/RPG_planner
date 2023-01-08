@@ -7,6 +7,8 @@ SkillsForm::SkillsForm(QWidget *parent) :
 {
 
     ui->setupUi(this);
+//    list[0].skillname = "No skills";
+//    list[0].experience = 0;
     loaddata();
 
 }
@@ -32,6 +34,7 @@ void SkillsForm::on_pushButton_clicked()
 
         ui->listWidget->addItem(enteredSkill);
         list.append(skill);
+        //emit skillListChanched_sig(list);
 
     }
 

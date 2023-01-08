@@ -48,6 +48,8 @@ private:
     void fillupCombobox();
     void chooseSkill();
 
+    QList<QString> gotSkills;
+
 };
 
 #endif // ITEMEDITOR_H
