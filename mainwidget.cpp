@@ -38,7 +38,8 @@ void MainWidget::setlevelinfo()
 {
     int level=definelevel(general_experience);
     ui->progressBar->setValue(general_experience % 500);
-    //ui->numLevel->settext(string(level));
+
+    ui->numLevel->setText(QString("Ваш уровень: %1").arg(general_experience));
     qDebug()<< __FUNCTION__ << "level" << level;
 
 

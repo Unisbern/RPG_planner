@@ -24,6 +24,7 @@ void TaskItem::update()
 
     ui->name->setText(name);
     ui->experience->setText(QString("Опыт: %1").arg(experience));
+    ui->labelSkill->setText(skill);
 
 }
 
