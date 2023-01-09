@@ -30,15 +30,16 @@ MainWidget::MainWidget(QWidget *parent)
     ui->progressBar->setRange(0,500);
     setlevelinfo();
 
+    ui->timeBar->setRange(0,86400);
+
+    QTime Time = QTime::currentTime();
+    timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, this, &MainWidget::on_timeout);
+    timer->start(86400-Time.secsTo(QTime(23,59,59,0)));
 
     connect(this, &MainWidget::onSkillForm_savedata, skills_ui, &SkillsForm::onSkillForm_savedata_get);
     connect(this, &MainWidget::onEditor_loaddata, tasks_ui->editorWidget, &ItemEditor::onEditor_loaddata_get);
-    //connect(skills_ui, &SkillsForm::skillListChanched_sig, tasks_ui->editorWidget, &ItemEditor::on_Editor_getSkills);
-
-
-    //Не работает по неизвестной причине
-    //эмит отправлет чекбокс в айтеме
-    connect(tasks_ui, &TasksForm::on_Exp, this, &MainWidget::gotExp); //Не работает по неизвестной причине
+    connect(tasks_ui, &TasksForm::on_Exp, this, &MainWidget::gotExp);
 }
 
 MainWidget::~MainWidget()
@@ -120,6 +121,7 @@ void MainWidget::setWidget(widget_t id)
         skills_ui->show();
         break;
     case ACHIEVEMENT_WGT:
+        change_AchiveWidget();
         achievement_ui->show();
         break;
     case USER_WGT:
@@ -134,10 +136,18 @@ void MainWidget::setWidget(widget_t id)
 
 }
 
-
-void MainWidget::on_progressBar_valueChanged(int value)
+void MainWidget::change_AchiveWidget()
 {
+    //achievement_ui->layout()->itemAt(1)->setText("");
+    achievement_ui->setLabels(achievement_list[0],achievement_list[1],definelevel(achievement_list[0]));
 
+}
+
+void MainWidget::on_timeout()
+{
+    qDebug()<<__FUNCTION__;
+    QTime time = QTime::currentTime();
+    ui->timeBar->setValue(86400-time.secsTo(QTime(23,59,59,0)));
 }
 
 
@@ -190,8 +200,8 @@ void MainWidget::saveAchievments()
     QTextStream stream;
     stream.setDevice(&achivedata);
 
-    stream << achievement_list[0] << ','
-           << achievement_list[1];
+    stream << achievement_list[0] <<','
+           << achievement_list[1]<<endl;
     achivedata.close();
 
 }
@@ -199,6 +209,7 @@ void MainWidget::saveAchievments()
 void MainWidget::gotExp(TaskItem *item)
 {
     achievement_list[0]+=item->experience;
+    achievement_list[1]++;
     setlevelinfo();
 
 }

@@ -15,6 +15,8 @@ public:
     explicit UserWidget(QWidget *parent = nullptr);
     ~UserWidget();
 
+
+
 private:
     Ui::UserWidget *ui;
 };
