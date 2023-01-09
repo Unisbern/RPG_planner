@@ -17,26 +17,29 @@ class TasksForm : public QWidget
 {
     Q_OBJECT
 
-
-public:
-    explicit TasksForm(QWidget *parent = nullptr);
-    ~TasksForm();
-    ItemEditor *editorWidget;
-
-
+signals:
+    void on_Exp(TaskItem *item);
 public slots:
+    //void sendExp(int exp);
     void on_taskitem_get(TaskItem *item);
     void on_taskdelete_get(TaskItem *item);
+    void on_check_get(TaskItem *item);
 
 private slots:
     void on_buttonAdd_clicked();
 
     void on_buttonDate_clicked();
 
+public:
+    explicit TasksForm(QWidget *parent = nullptr);
+    ~TasksForm();
+    ItemEditor *editorWidget;
+
 private:
-    QCalendarWidget *task_calendar;
+
     Ui::tasksform *ui;
     QList<TaskItem *> list;
+    QCalendarWidget *task_calendar;
 
 
 

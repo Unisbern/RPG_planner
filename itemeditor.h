@@ -27,6 +27,7 @@ public:
 
 public slots:
     void onEditor_loaddata_get();
+
 private slots:
     void on_buttonConfirm_accepted();
     void on_buttonConfirm_rejected();

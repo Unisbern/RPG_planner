@@ -6,7 +6,7 @@ ItemEditor::ItemEditor(QWidget *parent) :
     ui(new Ui::ItemEditor)
 {
     ui->setupUi(this);
-    //ui->textEdit->setWordWrapMode(QTextOption::NoWrap);
+
     calendar = new QCalendarWidget();
     ui->buttonDate->setText(QDate::currentDate().toString("dd.MM.yyyy"));
     connect(calendar, &QCalendarWidget::selectionChanged, this, &ItemEditor::on_calendar);
@@ -53,6 +53,7 @@ void ItemEditor::on_buttonConfirm_accepted()
     item->update();
     emit taskitem_sig(item);
     this->hide();
+
 //    setOverwriteMode(bool overwrite)
 }
 

@@ -30,10 +30,6 @@ public:
 
     QList<skill_type> list;
 
-//signals:
-    //void skillListChanched_sig(QList<skill_type> list);
-
-
 public slots:
     void on_pushButton_clicked();
     void on_deleteButton_clicked();
@@ -45,7 +41,6 @@ private:
 
     void savedata();
     void loaddata();
-//    void deleteitem();
 };
 
 #endif // SKILLSFORM_H

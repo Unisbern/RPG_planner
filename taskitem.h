@@ -6,7 +6,8 @@
 #include <QString>
 #include <QDate>
 #include <QDebug>
-//#include <skillsform.h>
+#include <QDialog>
+#include <QDialogButtonBox>
 
 namespace Ui {
 class taskItem;
@@ -18,10 +19,18 @@ class TaskItem : public QWidget
 
 signals:
     void taskdelete_sig(TaskItem *item);
+    void gotExp_sig(TaskItem *item);
+
+
+public slots:
+    void on_buttonDelete_clicked();
+    void on_check_stateChanged(int arg1);
+
 
 public:
     explicit TaskItem(QWidget *parent = nullptr);
     ~TaskItem();
+
 
     QString name;
     int experience;
@@ -36,17 +45,15 @@ public:
 
     void update();
     void updatewith(QString lineItemInfo);
-    void deleteitem();
-
-
-
     void setTitle(int i);
 
-private slots:
-    void on_buttonDelete_clicked();
+    Ui::taskItem *ui;
+
 
 private:
-    Ui::taskItem *ui;
+
+    void confirmDialog();
+    void accrueExp();
 
 };
 

@@ -25,19 +25,25 @@ MainWidget::MainWidget(QWidget *parent)
     achievement_ui->hide();
     help_ui->hide();
 
-    general_experience=1400;
-
+    //general_experience=1400;
+    loadAchievments();
     ui->progressBar->setRange(0,500);
     setlevelinfo();
 
-    connect(this, &MainWidget::onSkillForm_savedata, skills_ui, &SkillsForm::onSkillForm_savedata_get);
 
+    connect(this, &MainWidget::onSkillForm_savedata, skills_ui, &SkillsForm::onSkillForm_savedata_get);
     connect(this, &MainWidget::onEditor_loaddata, tasks_ui->editorWidget, &ItemEditor::onEditor_loaddata_get);
     //connect(skills_ui, &SkillsForm::skillListChanched_sig, tasks_ui->editorWidget, &ItemEditor::on_Editor_getSkills);
+
+
+    //Не работает по неизвестной причине
+    //эмит отправлет чекбокс в айтеме
+    connect(tasks_ui, &TasksForm::on_Exp, this, &MainWidget::gotExp); //Не работает по неизвестной причине
 }
 
 MainWidget::~MainWidget()
 {
+    saveAchievments();
     delete help_ui;
     delete achievement_ui;
     delete user_ui;
@@ -48,8 +54,8 @@ MainWidget::~MainWidget()
 
 void MainWidget::setlevelinfo()
 {
-    int level=definelevel(general_experience);
-    ui->progressBar->setValue(general_experience % 500);
+    int level=definelevel(achievement_list[0]);
+    ui->progressBar->setValue(achievement_list[0] % 500);
 
     ui->numLevel->setText(QString("Ваш уровень: %1").arg(level));
     qDebug()<< __FUNCTION__ << "level" << level;
@@ -155,3 +161,44 @@ void MainWidget::on_buttonHelp_clicked()
     setWidget(HELP_WGT);
 }
 
+void MainWidget::loadAchievments()
+{
+    qDebug()<<__FUNCTION__;
+    QFile achivedata("achivedata.csv");
+    achivedata.open(QIODevice::ReadWrite);
+
+    if(!achivedata.atEnd()){
+        QString dataline = achivedata.readLine();
+        QStringList Achive;
+        Achive = dataline.split(QLatin1Char(','));
+        achievement_list[0] = Achive[0].toInt(); //общий опыт
+        achievement_list[1] = Achive[1].toInt(); //количество выполненных тасков
+    }
+    else {
+        achievement_list[0] = 0;
+        achievement_list[1] = 0;
+    }
+    achivedata.close();
+}
+
+void MainWidget::saveAchievments()
+{
+    qDebug()<<__FUNCTION__;
+    QFile achivedata("achivedata.csv");
+    achivedata.open(QIODevice::ReadWrite);
+
+    QTextStream stream;
+    stream.setDevice(&achivedata);
+
+    stream << achievement_list[0] << ','
+           << achievement_list[1];
+    achivedata.close();
+
+}
+
+void MainWidget::gotExp(TaskItem *item)
+{
+    achievement_list[0]+=item->experience;
+    setlevelinfo();
+
+}

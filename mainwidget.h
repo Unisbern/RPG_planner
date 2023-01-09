@@ -20,43 +20,43 @@ class MainWidget : public QWidget
 {
     Q_OBJECT
 
-public:
-    MainWidget(QWidget *parent = nullptr);
-    ~MainWidget();
-    void setlevelinfo();
-    int definelevel(int general_experience);
-    int general_experience;
 
 signals:
     void onSkillForm_savedata();
     void onEditor_loaddata();
 
+public slots:
+    void gotExp(TaskItem *item);
 
 private slots:
     void on_buttonTasks_clicked();
     void on_buttonStatistics_clicked();
+    void on_buttonAchievments_clicked();
+    void on_buttonProflie_clicked();
+    void on_buttonHelp_clicked();
 
     void on_progressBar_valueChanged(int value);
 
-    void on_buttonAchievments_clicked();
-
-    void on_buttonProflie_clicked();
-
-    void on_buttonHelp_clicked();
+public:
+    MainWidget(QWidget *parent = nullptr);
+    ~MainWidget();
+    void setlevelinfo();
+    QList<int> achievement_list;
+    int definelevel(int general_experience);
+    int general_experience;
 
 private:
     Ui::MainWidget *ui;
-    SkillsForm *skills_ui; //экземпляр смотри main
+    SkillsForm *skills_ui;
     TasksForm *tasks_ui;
     UserWidget *user_ui;
     AchievementForm *achievement_ui;
     HelpWidget *help_ui;
 
+    void loadAchievments();
+    void saveAchievments();
     typedef enum {EMPTY_WGT, TASKS_WGT, SKILLS_WGT, ACHIEVEMENT_WGT, USER_WGT, HELP_WGT} widget_t;
     void setWidget(widget_t id);
-
-
-
 
 };
 #endif // MAINWIDGET_H
