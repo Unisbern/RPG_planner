@@ -6,7 +6,7 @@ ItemEditor::ItemEditor(QWidget *parent) :
     ui(new Ui::ItemEditor)
 {
     ui->setupUi(this);
-    //ui->textEdit->setWordWrapMode(QTextOption::NoWrap);
+
     calendar = new QCalendarWidget();
     ui->buttonDate->setText(QDate::currentDate().toString("dd.MM.yyyy"));
     connect(calendar, &QCalendarWidget::selectionChanged, this, &ItemEditor::on_calendar);

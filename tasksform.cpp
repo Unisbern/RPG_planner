@@ -36,6 +36,7 @@ TasksForm::~TasksForm()
 
 }
 
+
 void TasksForm::on_taskitem_get(TaskItem *item)
 {
     qDebug()<<__FUNCTION__;
