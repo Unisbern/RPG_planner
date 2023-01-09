@@ -17,6 +17,8 @@ class TasksForm : public QWidget
 {
     Q_OBJECT
 
+signals:
+    void on_Exp(TaskItem *item);
 public slots:
     //void sendExp(int exp);
     void on_taskitem_get(TaskItem *item);

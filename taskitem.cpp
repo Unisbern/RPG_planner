@@ -93,13 +93,16 @@ void TaskItem::confirmDialog()
 
 void TaskItem::accrueExp()
 {
+    qDebug()<<__FUNCTION__;
     emit gotExp_sig(this);
+    qDebug()<<"emit gotExp_sig(this)";
     on_buttonDelete_clicked();
     //вызов функции начисления опыта и удаления таска
 }
 
 void TaskItem::on_check_stateChanged(int arg1)
 {
+    qDebug()<<__FUNCTION__;
     confirmDialog();
 
 }

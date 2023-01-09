@@ -43,6 +43,9 @@ void TasksForm::on_taskitem_get(TaskItem *item)
 {
     qDebug()<<__FUNCTION__;
     connect(item, &TaskItem::gotExp_sig, this, &TasksForm::on_check_get);
+
+
+
     connect(item, &TaskItem::taskdelete_sig, this, &TasksForm::on_taskdelete_get);
 
     list.append(item);
@@ -77,7 +80,7 @@ void TasksForm::on_taskdelete_get(TaskItem *item)
 
 void TasksForm::on_check_get(TaskItem *item)
 {
-    emit on_check_get(item);
+    emit on_Exp(item);
     on_taskdelete_get(item);
 
 }
