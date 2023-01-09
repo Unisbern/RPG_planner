@@ -46,9 +46,10 @@ public:
     void updatewith(QString lineItemInfo);
     void setTitle(int i);
 
+    Ui::taskItem *ui;
+
 
 private:
-    Ui::taskItem *ui;
 
     void confirmDialog();
     void accrueExp();

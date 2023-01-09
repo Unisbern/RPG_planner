@@ -37,7 +37,8 @@ MainWidget::MainWidget(QWidget *parent)
 
 
     //Не работает по неизвестной причине
-    //connect(&tasks_ui, &TaskItem::gotExp_sig, ui, &MainWidget::gotExp); //Не работает по неизвестной причине
+    //эмит отправлет чекбокс в айтеме
+    //connect(TaskItem::ui.check, &TaskItem::gotExp_sig, ui, &MainWidget::gotExp); //Не работает по неизвестной причине
 }
 
 MainWidget::~MainWidget()
