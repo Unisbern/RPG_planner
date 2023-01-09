@@ -38,7 +38,7 @@ MainWidget::MainWidget(QWidget *parent)
 
     //Не работает по неизвестной причине
     //эмит отправлет чекбокс в айтеме
-    //connect(TaskItem::ui.check, &TaskItem::gotExp_sig, ui, &MainWidget::gotExp); //Не работает по неизвестной причине
+    connect(tasks_ui, &TasksForm::on_check_get, this, &MainWidget::gotExp); //Не работает по неизвестной причине
 }
 
 MainWidget::~MainWidget()
@@ -196,9 +196,9 @@ void MainWidget::saveAchievments()
 
 }
 
-void MainWidget::gotExp(int experience)
+void MainWidget::gotExp(TaskItem *item)
 {
-    achievement_list[0]+=experience;
+    achievement_list[0]+=item->experience;
     setlevelinfo();
 
 }

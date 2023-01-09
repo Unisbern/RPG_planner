@@ -12,6 +12,8 @@ TasksForm::TasksForm(QWidget *parent) :
 
     task_calendar = new QCalendarWidget();
     connect(editorWidget, &ItemEditor::taskitem_sig, this, &TasksForm::on_taskitem_get);
+
+//    connect(this, &TaskItem::gotExp_sig, this, &TasksForm::on_check_get);
     connect(task_calendar, &QCalendarWidget::selectionChanged, this, &TasksForm::chooseDate_Filter);
 
 }
@@ -40,6 +42,7 @@ TasksForm::~TasksForm()
 void TasksForm::on_taskitem_get(TaskItem *item)
 {
     qDebug()<<__FUNCTION__;
+    connect(item, &TaskItem::gotExp_sig, this, &TasksForm::on_check_get);
     connect(item, &TaskItem::taskdelete_sig, this, &TasksForm::on_taskdelete_get);
 
     list.append(item);
@@ -56,8 +59,8 @@ void TasksForm::on_taskdelete_get(TaskItem *item)
 
     if(list.contains(item)){
         disconnect(item, &TaskItem::taskdelete_sig, this, &TasksForm::on_taskdelete_get);
+        disconnect(item, &TaskItem::gotExp_sig, this, &TasksForm::on_check_get);
         item->hide();
-
         list.removeAt(list.indexOf(item));
         ui->scrollLayout->removeWidget(item);
 
@@ -69,6 +72,13 @@ void TasksForm::on_taskdelete_get(TaskItem *item)
         qCritical("Element doesn`t exist");
     }
 
+
+}
+
+void TasksForm::on_check_get(TaskItem *item)
+{
+    emit on_check_get(item);
+    on_taskdelete_get(item);
 
 }
 

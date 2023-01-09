@@ -53,6 +53,7 @@ void ItemEditor::on_buttonConfirm_accepted()
     item->update();
     emit taskitem_sig(item);
     this->hide();
+
 //    setOverwriteMode(bool overwrite)
 }
 

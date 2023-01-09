@@ -26,7 +26,7 @@ signals:
     void onEditor_loaddata();
 
 public slots:
-    void gotExp(int experience);
+    void gotExp(TaskItem *item);
 
 private slots:
     void on_buttonTasks_clicked();

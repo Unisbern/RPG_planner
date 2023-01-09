@@ -19,12 +19,13 @@ class TaskItem : public QWidget
 
 signals:
     void taskdelete_sig(TaskItem *item);
-    void gotExp_sig(int experience);
+    void gotExp_sig(TaskItem *item);
 
 
-private slots:
+public slots:
     void on_buttonDelete_clicked();
     void on_check_stateChanged(int arg1);
+
 
 public:
     explicit TaskItem(QWidget *parent = nullptr);

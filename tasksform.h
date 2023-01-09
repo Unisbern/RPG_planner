@@ -21,6 +21,7 @@ public slots:
     //void sendExp(int exp);
     void on_taskitem_get(TaskItem *item);
     void on_taskdelete_get(TaskItem *item);
+    void on_check_get(TaskItem *item);
 
 private slots:
     void on_buttonAdd_clicked();

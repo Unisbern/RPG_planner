@@ -8,7 +8,7 @@ TaskItem::TaskItem(QWidget *parent) :
     ui->setupUi(this);
 
     //connect(this, &TaskItem::gotExp_sig, ui, &MainWidget::gotExp);
-
+//    connect(this, &TaskItem::gotExp_sig, , &TasksForm::on_check_get);
 }
 
 TaskItem::~TaskItem()
@@ -93,7 +93,7 @@ void TaskItem::confirmDialog()
 
 void TaskItem::accrueExp()
 {
-    emit gotExp_sig(experience);
+    emit gotExp_sig(this);
     on_buttonDelete_clicked();
     //вызов функции начисления опыта и удаления таска
 }
