@@ -213,7 +213,7 @@
      <item row="0" column="1" colspan="2">
       <widget class="QLabel" name="numTitle">
        <property name="text">
-        <string>Ник игрока</string>
+        <string/>
        </property>
       </widget>
      </item>

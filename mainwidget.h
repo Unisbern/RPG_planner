@@ -11,6 +11,8 @@
 #include <QDebug>
 #include <QList>
 #include <QFile>
+#include <QTime>
+#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWidget; }
@@ -34,8 +36,7 @@ private slots:
     void on_buttonAchievments_clicked();
     void on_buttonProflie_clicked();
     void on_buttonHelp_clicked();
-
-    void on_progressBar_valueChanged(int value);
+    void on_timeout();
 
 public:
     MainWidget(QWidget *parent = nullptr);
@@ -52,11 +53,14 @@ private:
     UserWidget *user_ui;
     AchievementForm *achievement_ui;
     HelpWidget *help_ui;
+    QTimer *timer;
 
     void loadAchievments();
     void saveAchievments();
     typedef enum {EMPTY_WGT, TASKS_WGT, SKILLS_WGT, ACHIEVEMENT_WGT, USER_WGT, HELP_WGT} widget_t;
     void setWidget(widget_t id);
+    void change_AchiveWidget();
+    int time_tillEnd();
 
 };
 #endif // MAINWIDGET_H
