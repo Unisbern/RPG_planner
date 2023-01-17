@@ -16,8 +16,7 @@ SOURCES += \
     mainwidget.cpp \
     skillsform.cpp \
     taskitem.cpp \
-    tasksform.cpp \
-    userwidget.cpp
+    tasksform.cpp
 
 HEADERS += \
     achievementform.h \
@@ -26,8 +25,7 @@ HEADERS += \
     mainwidget.h \
     skillsform.h \
     taskitem.h \
-    tasksform.h \
-    userwidget.h
+    tasksform.h
 
 FORMS += \
     achievementform.ui \
@@ -36,8 +34,7 @@ FORMS += \
     mainwidget.ui \
     skillsform.ui \
     taskitem.ui \
-    tasksform.ui \
-    userwidget.ui
+    tasksform.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

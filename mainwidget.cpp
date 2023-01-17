@@ -8,24 +8,22 @@ MainWidget::MainWidget(QWidget *parent)
 {
     ui->setupUi(this);
     tasks_ui = new TasksForm();
-    skills_ui = new SkillsForm(); //выделение места в памяти
-    user_ui = new UserWidget();
+    skills_ui = new SkillsForm();
     achievement_ui = new AchievementForm();
     help_ui = new HelpWidget();
 
     ui->spaceWidget->addWidget(skills_ui);
     ui->spaceWidget->addWidget(tasks_ui);
-    ui->spaceWidget->addWidget(user_ui);
     ui->spaceWidget->addWidget(help_ui);
     ui->spaceWidget->addWidget(achievement_ui);
 
     tasks_ui->hide();
     skills_ui->hide();
-    user_ui->hide();
     achievement_ui->hide();
     help_ui->hide();
 
-    //general_experience=1400;
+    //achievement_list = new QList<int> achievement_list;
+
     loadAchievments();
     ui->progressBar->setRange(0,500);
     setlevelinfo();
@@ -47,7 +45,6 @@ MainWidget::~MainWidget()
     saveAchievments();
     delete help_ui;
     delete achievement_ui;
-    delete user_ui;
     delete tasks_ui;
     delete skills_ui;
     delete ui;
@@ -103,7 +100,6 @@ void MainWidget::setWidget(widget_t id)
     qDebug()<<__FUNCTION__<<id;
     tasks_ui->hide();
     skills_ui->hide();
-    user_ui->hide();
     achievement_ui->hide();
     help_ui->hide();
 
@@ -123,9 +119,6 @@ void MainWidget::setWidget(widget_t id)
     case ACHIEVEMENT_WGT:
         change_AchiveWidget();
         achievement_ui->show();
-        break;
-    case USER_WGT:
-        user_ui->show();
         break;
     case HELP_WGT:
         help_ui->show();
@@ -158,12 +151,6 @@ void MainWidget::on_buttonAchievments_clicked()
 }
 
 
-void MainWidget::on_buttonProflie_clicked()
-{
-    qDebug() << __FUNCTION__ ;
-    setWidget(USER_WGT);
-}
-
 
 void MainWidget::on_buttonHelp_clicked()
 {
@@ -176,17 +163,20 @@ void MainWidget::loadAchievments()
     qDebug()<<__FUNCTION__;
     QFile achivedata("achivedata.csv");
     achivedata.open(QIODevice::ReadWrite);
-
-    if(!achivedata.atEnd()){
+    if(achivedata.size()==0){
+        qDebug()<<"size check";
+        achievement_list[0] =0; //общий опыт
+        achievement_list[1] =0;
+        qDebug()<<achievement_list[0];
+        qDebug()<<achievement_list[1];
+        //saveAchievments();
+    }
+    else if(!achivedata.atEnd()){
         QString dataline = achivedata.readLine();
         QStringList Achive;
         Achive = dataline.split(QLatin1Char(','));
         achievement_list[0] = Achive[0].toInt(); //общий опыт
         achievement_list[1] = Achive[1].toInt(); //количество выполненных тасков
-    }
-    else if(achivedata.size()==0){
-        achievement_list[0] = 0;
-        achievement_list[1] = 0;
     }
     achivedata.close();
 }

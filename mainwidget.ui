@@ -55,7 +55,7 @@
       <layout class="QVBoxLayout" name="spaceWidget"/>
      </item>
      <item row="4" column="0">
-      <layout class="QVBoxLayout" name="verticalLayout" stretch="1,9,9,9,9,9,0">
+      <layout class="QVBoxLayout" name="verticalLayout" stretch="1,9,9,9,9,0">
        <item>
         <spacer name="verticalSpacer_2">
          <property name="orientation">
@@ -105,19 +105,6 @@
          </property>
          <property name="text">
           <string>Достижения</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="buttonProflie">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Профиль</string>
          </property>
         </widget>
        </item>
