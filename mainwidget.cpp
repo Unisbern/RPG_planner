@@ -184,7 +184,7 @@ void MainWidget::loadAchievments()
         achievement_list[0] = Achive[0].toInt(); //общий опыт
         achievement_list[1] = Achive[1].toInt(); //количество выполненных тасков
     }
-    else {
+    else if(achivedata.size()==0){
         achievement_list[0] = 0;
         achievement_list[1] = 0;
     }

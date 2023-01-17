@@ -26,14 +26,7 @@
      <item>
       <widget class="QLabel" name="username">
        <property name="text">
-        <string>      Никнейм пользователя</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_2">
-       <property name="text">
-        <string>Изменить никнейм</string>
+        <string/>
        </property>
       </widget>
      </item>

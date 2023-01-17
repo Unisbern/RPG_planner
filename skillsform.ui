@@ -17,7 +17,7 @@
    <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="skills">
       <attribute name="title">
@@ -42,11 +42,6 @@
         <widget class="QListWidget" name="listWidget"/>
        </item>
       </layout>
-     </widget>
-     <widget class="QWidget" name="chart">
-      <attribute name="title">
-       <string>Диаграмма</string>
-      </attribute>
      </widget>
     </widget>
    </item>
