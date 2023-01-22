@@ -91,7 +91,7 @@
           </sizepolicy>
          </property>
          <property name="text">
-          <string>Статистика</string>
+          <string>Навыки</string>
          </property>
         </widget>
        </item>
