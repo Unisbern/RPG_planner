@@ -30,10 +30,10 @@ MainWidget::MainWidget(QWidget *parent)
 
     ui->timeBar->setRange(0,86400);
 
-    QTime Time = QTime::currentTime();
+    //QTime Time = QTime::currentTime();
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &MainWidget::on_timeout);
-    timer->start(86400-Time.secsTo(QTime(23,59,59,0)));
+    timer->start(1000);
 
     connect(this, &MainWidget::onSkillForm_savedata, skills_ui, &SkillsForm::onSkillForm_savedata_get);
     connect(this, &MainWidget::onEditor_loaddata, tasks_ui->editorWidget, &ItemEditor::onEditor_loaddata_get);
@@ -131,7 +131,6 @@ void MainWidget::setWidget(widget_t id)
 
 void MainWidget::change_AchiveWidget()
 {
-    //achievement_ui->layout()->itemAt(1)->setText("");
     achievement_ui->setLabels(achievement_list[0],achievement_list[1],definelevel(achievement_list[0]));
 
 }
@@ -139,10 +138,8 @@ void MainWidget::change_AchiveWidget()
 void MainWidget::on_timeout()
 {
     qDebug()<<__FUNCTION__;
-    QTime time = QTime::currentTime();
-    ui->timeBar->setValue(86400-time.secsTo(QTime(23,59,59,0)));
+    ui->timeBar->setValue(QTime::currentTime().msecsSinceStartOfDay() / 1000);
 }
-
 
 void MainWidget::on_buttonAchievments_clicked()
 {
@@ -163,24 +160,25 @@ void MainWidget::loadAchievments()
     qDebug()<<__FUNCTION__;
     QFile achivedata("achivedata.csv");
     achivedata.open(QIODevice::ReadWrite);
-    if(achivedata.size()==0){
-        qDebug()<<"size check";
-        achievement_list[0] =0; //общий опыт
-        achievement_list[1] =0;
-        qDebug()<<achievement_list[0];
-        qDebug()<<achievement_list[1];
-        //saveAchievments();
-    }
-    else if(!achivedata.atEnd()){
+    if(achivedata.size() > 0){
         QString dataline = achivedata.readLine();
-        QStringList Achive;
-        Achive = dataline.split(QLatin1Char(','));
-        achievement_list[0] = Achive[0].toInt(); //общий опыт
-        achievement_list[1] = Achive[1].toInt(); //количество выполненных тасков
+        QStringList Achive = dataline.split(QLatin1Char(','));
+        if(Achive.size() == 2){
+            achievement_list.append(Achive[0].toInt());
+            achievement_list.append(Achive[1].toInt());
+        } else {
+            qWarning("Format corrupt") ;
+            achievement_list.append(0);
+            achievement_list.append(0);
+        }
+    } else {
+        qWarning("Achive file is empty") ;
+        achievement_list.append(0);
+        achievement_list.append(0);
     }
+
     achivedata.close();
 }
-
 void MainWidget::saveAchievments()
 {
     qDebug()<<__FUNCTION__;
