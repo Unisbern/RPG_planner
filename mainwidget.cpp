@@ -22,15 +22,13 @@ MainWidget::MainWidget(QWidget *parent)
     achievement_ui->hide();
     help_ui->hide();
 
-    //achievement_list = new QList<int> achievement_list;
-
     loadAchievments();
     ui->progressBar->setRange(0,500);
+    ui->progressBar->setStyleSheet("QProgressBar { border: 1px solid grey; text-align: middle; border-radius: 5px;} QProgressBar::chunk {background-color: #05B8CC; width: 10px;}");
     setlevelinfo();
 
     ui->timeBar->setRange(0,86400);
-
-    //QTime Time = QTime::currentTime();
+    ui->timeBar->setStyleSheet("QProgressBar { border: 1px solid grey; text-align: middle; border-radius: 5px;} QProgressBar::chunk {background-color: #CD96CD; width: 10px;}");
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &MainWidget::on_timeout);
     timer->start(1000);
