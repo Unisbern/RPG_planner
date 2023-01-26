@@ -111,7 +111,7 @@ void TasksForm::savedata(QList<TaskItem *> list)
               << item->difficulty <<','
               << item->urgency <<','
               << item->fear <<','
-              << item->skill.trimmed() <<endl;
+              << item->skill.trimmed() << Qt::endl;
 
     }
     taskdata.close();

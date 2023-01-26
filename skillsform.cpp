@@ -89,7 +89,7 @@ void SkillsForm::savedata()
 
     for(auto &item : list){
         stream<< item.skillname <<','
-              << item.experience  << endl;
+              << item.experience  << Qt::endl;
 
     }
     skillsdata.close();

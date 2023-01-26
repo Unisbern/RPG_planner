@@ -187,7 +187,7 @@ void MainWidget::saveAchievments()
     stream.setDevice(&achivedata);
 
     stream << achievement_list[0] <<','
-           << achievement_list[1]<<endl;
+           << achievement_list[1]<< Qt::endl;
     achivedata.close();
 
 }
